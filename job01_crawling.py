@@ -4,7 +4,6 @@ import re
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 import time
-url ='https://movie.naver.com/movie/sdb/browsing/bmovie.naver?open=2022&page=1'
 
 headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"}
 
@@ -13,7 +12,6 @@ options = webdriver.ChromeOptions()
 options.add_argument('lang=ko_KR')
 options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36")
 driver= webdriver.Chrome('./chromedriver', options = options)
-# try:
 
 time.sleep(0.1)
 title_list = []
@@ -27,7 +25,6 @@ for i in range(1,2):
             driver.find_element_by_xpath(f'//*[@id="old_content"]/ul/li[{j}]/a').click()
         except NoSuchElementException:
             print('NoSuchElementException1')
-        # old_content > ul > li:nth-child(1) > a
         url1 = driver.current_url[-6:]
         for l in range(1,4):
             url1 = f'https://movie.naver.com/movie/bi/mi/review.naver?code={url1}&page={l}'
@@ -46,16 +43,13 @@ for i in range(1,2):
                     reviews = re.compile('[^가-힣a-zA-Z ]').sub(' ', reviews)
                     title = driver.find_element_by_css_selector('#content > div.article > div.mv_info_area > div.mv_info > h3 > a').text
                     title = re.compile('[^가-힣a-zA-Z ]').sub(' ', title)
-                    # for i in title:
-                    #     print(i.text)
                     reviews_list.append(reviews)
                     title_list.append(title)
                     driver.back()
                 except NoSuchElementException:
                     print('NoSuchElementException3')
                 print(k)
-
-                driver.get(url1)
+        driver.get(url)
         time.sleep(0.1)
 print(title_list)
 print(reviews_list)

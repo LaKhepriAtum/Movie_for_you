@@ -41,9 +41,10 @@ worddict_2 = dict(sorted(worddict_2.items(),
                     key=lambda item:item[1],
                       reverse=True))
 print(worddict_2)
+human_mask = np.array(Image.open('./crawling_data/human_mask.png')) # 모양 설정, mask은 배경이 투명, PNG 추천
 wordcloud_img_1 = WordCloud(
     background_color='white', max_words=500,
-    font_path=fontpath).generate_from_frequencies(worddict_1)
+    font_path=fontpath, mask = human_mask).generate_from_frequencies(worddict_1)
 
 wordcloud_img_2 = WordCloud(
     background_color='white', max_words=500,

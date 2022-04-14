@@ -17,12 +17,12 @@ for sentence in df.cleaned_sentences:
         print('.', end='')
     if count % 100 == 0:
         print()
-    token = okt.pos(sentence, stem=True) # 품사를 기준으로 나눈다. list 안의 dict 형태로
+    token = okt.pos(sentence, stem=True) # 품사를 기준으로 나눈다. list 안의 dict 형태로 # stem=True-> 원형으로
     # print(token)
     df_token = pd.DataFrame(token,  columns=['word', 'class']) # 단어, 품사
     df_token = df_token[(df_token['class']=='Noun') | # 명사인 단어
                                 (df_token['class']=='Verb') | # 동사
-                                (df_token['class']=='Adjective')]
+                                (df_token['class']=='Adjective')] #형용사
     cleaned_sentence = ' '.join(df_token.word) # 띄어쓰기를 기준으로 합친다.
     # print(cleaned_sentence)
     cleaned_sentences.append(cleaned_sentence)

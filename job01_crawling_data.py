@@ -13,7 +13,7 @@ options.add_argument('--disable-dev-shm-usage')
 options.add_argument('disable-gpu')
 
 driver= webdriver.Chrome('./chromedriver', options = options)
-driver.implicitly_wait(1)
+driver.implicitly_wait(1) # 로딩이 빨리 되면 바로 읽어오고, 안 되면 1초 기다리기
 # https://movie.naver.com/movie/sdb/browsing/bmovie.naver?open=2022&page=1 첫 페이지
 # //*[@id="old_content"]/ul/li[1]/a 영화제목 1
 # //*[@id="old_content"]/ul/li[2]/a 영화제목 2

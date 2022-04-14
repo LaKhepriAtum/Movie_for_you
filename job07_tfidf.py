@@ -2,7 +2,8 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.io import mmwrite, mmread # 행열 저장, 읽을 때 사용
 import pickle
-
+# Tf 문장 빈도, Df 문장 전체에서의 빈도-> 한문장에서의 빈도는 유사도 up, 전체 문장에서의 빈도는 유사도를 찾는데 도움 X, I-> 역수곱
+# 단순 곱은 아니고 따로 식이 존재
 df_reviews = pd.read_csv('./crawling_data/datasets/movie_review_2018_2022.csv')
 df_reviews.info()
 df_reviews.dropna(inplace = True)

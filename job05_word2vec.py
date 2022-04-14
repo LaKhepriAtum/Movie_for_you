@@ -16,6 +16,7 @@ for sentence in cleaned_token_review:
     cleaned_tokens.append(token)
 print(cleaned_tokens[0]) # 토큰 단위로 짤라진 list
 
+# 형태소 개수만큼의 자원에다 형태소 배치(비슷한 느낌을 주는 단어가 비슷한 위치에 위치)
 embedding_model = Word2Vec(cleaned_tokens, vector_size = 100, #vector_size-> 차원을 축소할 차원크기
                            window = 4, min_count=20, # window 몇개의 형태소로 해당하는 단어의 성질,
                            # 특징을 파악할 것인가? 형태소의 list에서 4개씩 짤라서 학습, conv의 kernel과 비슷,
@@ -24,5 +25,5 @@ embedding_model = Word2Vec(cleaned_tokens, vector_size = 100, #vector_size-> 차
                             # sg 0->CBOW(back of word-> 단어가 , 1->Skip-gram 인배딩할 때의 알고리즘
 # embedding_model, 빈도수가 20개 넘는 단어들의 100차원 좌표값
 embedding_model.save('./models/word2vexModel.model')
-print(embedding_model.wv.index_to_key)
+print(embedding_model.wv.index_to_key) #wv->word vector 형태소에 대한 100 차원 공간 좌표, 좌표값을 기준으로 컴퓨터가 단어의 성질을 이해
 print(len(embedding_model.wv.index_to_key))

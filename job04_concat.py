@@ -1,6 +1,6 @@
 import pandas as pd
 import glob
-data_paths = glob.glob('./crawling_data/datasets/*') # 경로 가져오기
+data_paths = glob.glob('./crawling_data/datasets/*') # 경로 가져오기 datasets 아래의 모든 경로를 list 형태로
 print(data_paths)
 df = pd.DataFrame()
 for path in data_paths:

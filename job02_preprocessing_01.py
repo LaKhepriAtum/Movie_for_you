@@ -18,8 +18,8 @@ stopwords_list = list(stopwords['stopword'])
 
 cleaned_sentences = []
 for review in df.reviews:
-    review = re.sub('[^가-힇 ]', '', review) # 한글 + 띄어쓰기(차이가 크다)
-    review_word = review.split(' ')
+    review = re.sub('[^가-힇 ]', '', review) # 한글 + 띄어쓰기(차이가 크다)  #[^가-힣 ]빼고 다 ''
+    review_word = review.split(' ') # 띄어쓰기 기준으로 나눈다
     words = []
     for word in review_word:
         if word not in stopwords_list:
